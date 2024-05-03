@@ -4,5 +4,12 @@
 ```
 cargo embed
 gdb xxx
-target remote :1337
+target remote :<port>
+```
+
+## lldb debug
+```
+cargo embed
+lldb xxx
+gdb-remote <port>
 ```
