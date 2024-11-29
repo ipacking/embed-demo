@@ -15,8 +15,8 @@ const PIXELS: [(usize, usize); 16] = [
 #[entry]
 fn main() -> ! {
     let board = Board::take().unwrap();
-    let mut delay = Timer::new(board.TIMER0);
     let mut display = Display::new(board.display_pins);
+    let mut timer = Timer::new(board.TIMER0);
     let mut leds = [
         [0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0],
@@ -31,7 +31,7 @@ fn main() -> ! {
         for current_led in PIXELS.iter() {
             leds[last_led.0][last_led.1] = 0;
             leds[current_led.0][current_led.1] = 1;
-            display.show(&mut delay, leds, 30);
+            display.show(&mut timer, leds, 30);
             last_led = *current_led;
         }
     }
